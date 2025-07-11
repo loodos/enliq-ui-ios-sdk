@@ -1,1 +1,1 @@
-@_exported import EnliqUserInterface
+@_exported import EnliqWebBrowser

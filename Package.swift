@@ -8,29 +8,29 @@ let package = Package(
     products: [
         /// **Unified package**: It contains all sub-packages
         .library(
-            name: "EIQUserInterface",
-            targets: ["EIQUserInterface"]
+            name: "EnliqUserInterface",
+            targets: ["EnliqUserInterface"]
         ),
         /// **Single packages**
         .library(
-            name: "EIQWebBrowser",
-            targets: ["EIQWebBrowser"]
+            name: "EnliqWebBrowser",
+            targets: ["EnliqWebBrowser"]
         )
     ],
     targets: [
         /// `EIQUserInterface` target
         .target(
-            name: "EIQUserInterface",
+            name: "EnliqUserInterface",
             dependencies: [
-                "EIQWebBrowser"
+                "EnliqWebBrowser"
             ],
             path: "Sources"
         ),
         /// `EIQWebBrowser` target
         .binaryTarget(
-            name: "EIQWebBrowser",
-            url: "https://github.com/loodos/enliq-ui-ios-sdk/releases/download/0.0.1/eiquserinterface.xcframework.zip",
-            checksum: "d4a7f868cffd2f9db2927e7b9f6bd394cc53811adb90af7a17e9ca4d4fafc9c3"
+            name: "EnliqWebBrowser",
+            url: "https://github.com/loodos/enliq-ui-ios-sdk/releases/download/1.0.0/eiqwebbrowser.xcframework.zip",
+            checksum: "bd6c2dfea33d0dba2d30b79333fea222e92c644e15d5ed5dd3d7b0f5e60161b5"
         )
     ]
 )
