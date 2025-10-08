@@ -30,7 +30,7 @@ let package = Package(
         .binaryTarget(
             name: "EnliqWebBrowser",
             url: "https://github.com/loodos/enliq-ui-ios-sdk/releases/download/1.0.0/eiqwebbrowser.xcframework.zip",
-            checksum: "bd6c2dfea33d0dba2d30b79333fea222e92c644e15d5ed5dd3d7b0f5e60161b5"
+            checksum: "483ed2715a275a96f6c42810d068ce5ee531e997b8793dbe81245cd0705a7aff"
         )
     ]
 )
