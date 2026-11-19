@@ -1,98 +1,145 @@
-# EIQUserInterface
+<p align="center">
+  <img src="https://i.ibb.co/zh0Lrz6J/test.png" alt="Enliq" width="320"/>
+</p>
 
-`EIQUserInterface` is a Swift package that includes multiple user interface components packages for iOS development. By integrating this package into your project, you can choose to add one or both of the included sub-packages.
+<h1 align="center">EIQUserInterface iOS SDK</h1>
 
+<p align="center">
+  <a href="https://github.com/loodos/enliq-ui-ios-sdk/releases/latest"><img src="https://img.shields.io/github/v/release/loodos/enliq-ui-ios-sdk?label=release&sort=semver" alt="Latest release"/></a>
+  <img src="https://img.shields.io/badge/platform-iOS%2015.0%2B-blue.svg" alt="Platform iOS 15.0+"/>
+  <a href="https://swift.org/package-manager"><img src="https://img.shields.io/badge/SPM-compatible-brightgreen.svg" alt="Swift Package Manager compatible"/></a>
+  <img src="https://img.shields.io/badge/distribution-XCFramework-lightgrey.svg" alt="Binary XCFramework"/>
+</p>
 
-## Included Packages
+<p align="center">
+  Ready-to-use UIKit components — in-app browser, barcode reader, image slider, pan modal,<br/>
+  pop menu, marquee label, loadable button and view controller transitions — by <a href="https://www.enliq.com">Enliq</a>.
+</p>
 
-### 1. EIQWebBrowser
+<p align="center">
+  <a href="https://developer.enliq.com"><b>Developer Docs</b></a> ·
+  <a href="https://github.com/loodos/enliq-ui-ios-sdk/releases"><b>Releases</b></a> ·
+  <a href="#support"><b>Support</b></a>
+</p>
 
-`EIQWebBrowser` is an in-app-web browser. It has a controller and dedicated configuration models for the content.
+---
 
-## Installation: 
+## Contents
 
-If you are working on a single module project you can use Option 1.
-Otherwise, (if you are developed a SPM based modular project) you should use Option 2.
-
-### Option 1: Single Module Project
-
-- File > Swift Packages > Add Package Dependency or you can use Xcode SPM addition menu:
-<img width="1024" alt="packageAdding" src="https://github.com/user-attachments/assets/32235ea4-e9f3-45c1-8c31-8debd29fa410">
-
-- Add `https://github.com/loodos/enliq-ios-ui.git`
-
-- Select "Up to Next Minor" with "1.0.0"
-
-<img width="1024" alt="repositoryAddition" src="https://github.com/user-attachments/assets/8073bb7a-9ee7-4d76-b9f8-17482e6a0859">
-
-
-**Note:** Since this module is in a pre-release stage, the release tag was created as 1.0.0. Some minor changes can be applied. After the release stage, this selection opiton can be changed as "Up to Next Major".
-
-### Option 2: SPM Modular Project
-
-#### Sub-Option 1: Adding All Packages
-
-You can add all packages with using the `EIQUserInterface` target on at once.
-To use `EIQUserInterface`, add the following dependency in your `Package.swift` file:
-
-```swift
-    dependencies: [
-        ...
-        .package(
-            url: "https://github.com/loodos/enliq-ios-ui.git",
-            .upToNextMinor(from: "1.0.0")
-        )
-    ],
-    ....
-    targets: [
-        ...,
-        .target(
-            name: "{Target Name}",
-            dependencies: [
-                ...,
-                .product(name: "EIQUserInterface", package: "enliq-ios-ui"),
-            ]
-        ),
-        ...
-    ]
-```
-Then, depending on which sub-package you want to use, add the relevant package(s) to your target’s dependencies.
-
-#### Sub-Option 2: Adding Single Package
-
-To include **only** (for example) `EIQWebBrowser`, configure your target like this:
-
-```swift
-    dependencies: [
-        ...
-        .package(
-            url: "https://github.com/loodos/enliq-ios-ui.git",
-            .upToNextMinor(from: "1.0.0")
-        )
-    ],
-    ....
-    targets: [
-        ...,
-        .target(
-            name: "{Target Name}",
-            dependencies: [
-                ...,
-                .product(name: "EIQWebBrowser", package: "enliq-ios-ui")
-            ]
-        ),
-        ...
-    ]
-```
-
-## Usage
-
-### EIQWebBrowser
-
-For detailed usage information, refer to the specific README.md of EIQOfflineControl [here](EIQUserInterface/Sources/EIQWebBrowser/README.md).
+- [Requirements](#requirements)
+- [Libraries](#libraries)
+- [Installation](#installation)
+- [EIQImageSlider](#eiqimageslider)
+- [EIQTransition](#eiqtransition)
+- [Migrating to 1.2](#migrating-to-12)
+- [Support](#support)
 
 ## Requirements
 
-- iOS 13.0+
-- Swift 5.9+
-- Xcode 15.0+
+| | Minimum |
+|---|---|
+| iOS | 15.0 |
+| Xcode | 16.0 |
+| Swift | 5.9 |
 
+Every component is distributed as a precompiled **binary XCFramework** built with library evolution. There are **no third-party dependencies**.
+
+## Libraries
+
+Add only the components you need, or `EIQUserInterface` to get all of them with a single `import`.
+
+| Library | Description | Docs |
+|---|---|---|
+| `EIQUserInterface` | All components below; `import EIQUserInterface` re-exports them | — |
+| `EIQWebBrowser` | In-app web browser for URLs and HTML with a configurable navigation bar | [Guide](docs/EIQWebBrowser.md) |
+| `EIQBarcodeReader` | Camera barcode / QR scanner with torch control and customizable UI | [Guide](docs/EIQBarcodeReader.md) |
+| `EIQImageSlider` | Paging image carousel with infinite / auto scroll and center zoom | [Below](#eiqimageslider) |
+| `EIQPanModal` | Drag-to-dismiss bottom sheet for any view controller | [Guide](docs/EIQPanModal.md) |
+| `EIQPopMenu` | Popover menu anchored to any view | [Guide](docs/EIQPopMenu.md) |
+| `EIQSlideText` | Auto-scrolling (marquee) `UILabel` with edge fades | [Guide](docs/EIQSlideText.md) |
+| `EIQLoadableButton` | `UIButton` with a built-in loading state | [Guide](docs/EIQLoadableButton.md) |
+| `EIQTransition` | Fade / slide / push and shared-element view controller transitions | [Below](#eiqtransition) |
+
+> `import EIQUserInterface` re-exports WebBrowser, LoadableButton, ImageSlider, BarcodeReader, PopMenu and PanModal.
+> Import `EIQSlideText` and `EIQTransition` explicitly.
+
+## Installation
+
+### Swift Package Manager
+
+**Xcode:** `File` → `Add Package Dependencies…` → enter the URL below → choose **Up to Next Major Version** → pick the libraries for your target.
+
+```
+https://github.com/loodos/enliq-ui-ios-sdk
+```
+
+**Package.swift:**
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/loodos/enliq-ui-ios-sdk.git", .upToNextMajor(from: "1.2.0"))
+],
+targets: [
+    .target(
+        name: "YourApp",
+        dependencies: [
+            .product(name: "EIQUserInterface", package: "enliq-ui-ios-sdk"),
+            // or individual components:
+            // .product(name: "EIQWebBrowser", package: "enliq-ui-ios-sdk"),
+        ]
+    )
+]
+```
+
+## EIQImageSlider
+
+```swift
+import EIQImageSlider
+
+let slider = EIQImageSlider()
+slider.images = [UIImage(named: "banner1")!, UIImage(named: "banner2")!]
+slider.isInfiniteScrollEnabled = true
+slider.isAutoScrollEnabled = true
+slider.autoScrollInterval = 4
+slider.itemCornerRadius = 12
+slider.delegate = self
+
+extension HomeViewController: EIQImageSliderDelegate {
+    func imageSlider(_ slider: EIQImageSlider, didSelectItemAt index: IndexPath) {
+        // open the tapped banner
+    }
+}
+```
+
+Use `centralZoom = .enabled(…)` to scale down side items, and `scrollToImage(…)` to move programmatically.
+
+## EIQTransition
+
+Configure the transition on the view controller being presented or pushed:
+
+```swift
+import EIQTransition
+
+let detail = ProductDetailViewController()
+detail.eiq.transitionType = .push(direction: .right)   // .auto, .fade, .slide(direction:), .push(direction:)
+detail.eiq.duration = 0.4
+navigationController?.pushViewController(detail, animated: true)
+```
+
+For shared-element transitions, give the matching views in both screens the same `eiq.id`.
+
+## Migrating to 1.2
+
+- Minimum deployment target is now **iOS 15.0**.
+- Install from this repository (`enliq-ui-ios-sdk`); the package name in `.product(…, package:)` is `enliq-ui-ios-sdk`.
+- If you previously used the components from source, run **Product → Clean Build Folder** (or delete DerivedData) once after switching.
+
+## Support
+
+- **Integration guides & changelog:** [developer.enliq.com](https://developer.enliq.com)
+- **Bug reports:** [GitHub Issues](https://github.com/loodos/enliq-ui-ios-sdk/issues)
+- **Account questions:** contact your Enliq account manager.
+
+---
+
+<p align="center">© Enliq. All rights reserved.</p>
